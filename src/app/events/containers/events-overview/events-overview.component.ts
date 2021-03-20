@@ -15,6 +15,7 @@ export class EventsOverviewComponent implements OnInit {
 	columnNames: string[];
 	sortColumn = "name";
 	sortDirection = "up";
+	sortableColumns = ["name", "eventDate"];
 	displayDateFormat: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 	constructor(private subjectService: SubjectService) { }
