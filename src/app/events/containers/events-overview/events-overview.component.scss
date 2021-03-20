@@ -1,4 +1,6 @@
 $first-column-padding: 0 1rem;
+$selected-text-color: white;
+$regular-text-color: black;
 
 .description p {
 	overflow: hidden;
@@ -12,8 +14,33 @@ table {
 		vertical-align: middle;
 	}
 	th {
-		background-color: slategray;		
-		color: white;
+		background-color: slategray;
+		border-right: 1px solid #ccc;
+		color: $regular-text-color;
+
+		span {
+			margin: 0 1rem;
+			
+			&.selected {
+				color: $selected-text-color;
+				font-weight: bold;
+			}
+
+			&:last-of-child {
+				border-right: none;			
+			}
+
+			& i {
+				:hover {
+					cursor: pointer;
+				}
+
+				&.selected {
+					color: $selected-text-color;
+				}
+			}
+			
+		}
 	}
 	tr:nth-child(even) {
 		background-color: #e6eaee;
