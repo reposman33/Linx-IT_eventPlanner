@@ -104,13 +104,13 @@ export class EventsOverviewComponent implements OnInit {
 	}
 
 	/**
-	 * - the callback function for the array some() method
+	 * - the callback function for the array some() method. Allow only to search by name
 	 * @param ob - object to search
 	 * @param query - querystring to search for in object
 	 * @returns boolean - whether the object contains the querystring
 	 */
 	objectContainsString(ob: IEvent, query: string) {
-		return Object.keys(ob).some(key => ob[key].indexOf(query) > -1)
+		return ob.name.indexOf(query) > -1
 	}
 
 	/**
