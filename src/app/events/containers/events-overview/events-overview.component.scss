@@ -5,11 +5,14 @@ $regular-text-color: #222;
 .description p {
 	overflow: hidden;
 	text-overflow: ellipsis;
-	width: 200px;
+	width: 400px;
 	white-space: nowrap;
 }
 table {
 	border: 1px solid #ccc;
+	margin: 0 auto;
+	width: 65vw;
+
 	td {
 		vertical-align: middle;
 	}
