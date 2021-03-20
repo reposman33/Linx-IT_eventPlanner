@@ -28,10 +28,9 @@ export class EventsOverviewComponent implements OnInit {
 	}
 
 	/**
-	 * retrieve the sortcolumn and sortdirection from the meta attrbutes of the clicked element
-
-	* @param e - the click event of the chevron element the user clicked
-	 */
+	   * retrieve the sortcolumn and sortdirection from the meta attrbutes of the clicked element
+	 * @param e - the click event of the chevron element the user clicked
+	*/
 	sort(e) {
 		// retrieve the sortdirection (up | down)
 		this.sortDirection = e.target.classList.value.substr(e.target.classList.value.indexOf('bi-chevron') + 'bi-chevron'.length + 1);
