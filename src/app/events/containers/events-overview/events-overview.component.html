@@ -1,1 +1,16 @@
-<p>events-overview works!</p>
+<div class="d-flex flex-column align-items justify-content p-3 mt-3">
+	<table class="table">
+		<caption>List of events</caption>
+		<th *ngFor="let columnName of columnNames"><strong>{{columnName}}</strong></th>
+		<tbody>
+			<tr *ngFor="let event of allEvents">
+				<td>{{event.name}}</td>
+				<td class="description">
+					<p title={{event.description}}>{{event.description}}</p>
+				</td>
+				<td>{{event.category}}</td>
+				<td>{{formatDate(event.eventDate)}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

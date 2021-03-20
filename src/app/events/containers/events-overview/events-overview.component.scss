@@ -1,0 +1,27 @@
+$first-column-padding: 0 1rem;
+
+.description p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 200px;
+	white-space: nowrap;
+}
+table {
+	border: 1px solid #ccc;
+	td {
+		vertical-align: middle;
+	}
+	th {
+		background-color: slategray;		
+		color: white;
+	}
+	tr:nth-child(even) {
+		background-color: #e6eaee;
+	}
+	tr:nth-child(odd) {
+		background-color: white;
+	}
+	tr:hover {
+		background-color: lightyellow;
+	}
+}
