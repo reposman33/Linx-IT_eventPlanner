@@ -9,7 +9,7 @@ import *  as  allEventsJsonData from '../../data/allEvents.json';
 export class EventsOverviewComponent implements OnInit {
 	allEvents = [];
 	columnNames: string[];
-	displayDateFormat = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+	displayDateFormat: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 	constructor() { }
 
