@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import *  as  allEventsJsonData from '../../data/allEvents.json';
+import { SubjectService } from "../../../services/subject.service";
+import { IEvent } from "../../../models/event";
 
 @Component({
 	selector: 'app-events-overview',
@@ -7,20 +9,25 @@ import *  as  allEventsJsonData from '../../data/allEvents.json';
 	styleUrls: ['./events-overview.component.scss']
 })
 export class EventsOverviewComponent implements OnInit {
-	allEvents = [];
+	allEvents: IEvent[];
+	// since the eventslist is mutated when searching (by filtering the events not containing the searchstring) we need to have a working copy and the original list so they can be displayed again.
+	events: IEvent[];
 	columnNames: string[];
 	sortColumn = "name";
-	sortDirection = "down";
+	sortDirection = "up";
 	displayDateFormat: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-	constructor() { }
+	constructor(private subjectService: SubjectService) { }
 
 	ngOnInit(): void {
 		this.allEvents = (allEventsJsonData as any).default.events;
-		this.columnNames = Object.keys(this.allEvents[0]);
+		this.events = this.clone(this.allEvents);
+		this.columnNames = Object.keys(this.events[0]);
 		// we don't display the id column
 		this.columnNames.splice(0, 1);
-		this.sortByColumn(this.allEvents, this.sortColumn, this.sortDirection)
+		// do the initial sort
+		this.sortByColumn(this.events, this.sortColumn, this.sortDirection)
+		this.subjectService.subject.subscribe((query: string) => this.events = this.filterEvents(this.events, query))
 	}
 
 	formatDate(date: Date): string {
@@ -36,7 +43,8 @@ export class EventsOverviewComponent implements OnInit {
 		this.sortDirection = e.target.classList.value.substr(e.target.classList.value.indexOf('bi-chevron') + 'bi-chevron'.length + 1);
 		// retrieve the sortcolumn 
 		this.sortColumn = e.target.dataset.column;
-		this.sortByColumn(this.allEvents, this.sortColumn, this.sortDirection)
+		// do the sort
+		this.sortByColumn(this.events, this.sortColumn, this.sortDirection)
 	}
 
 	/**
@@ -84,5 +92,32 @@ export class EventsOverviewComponent implements OnInit {
 			: dir === "down"
 				? (new Date(d1[col]) < new Date(d2[col]) ? 1 : new Date(d1[col]) > new Date(d2[col]) ? -1 : 0)
 				: 0
+	}
+
+	filterEvents(events: IEvent[], query: string) {
+		return query.length !== 0
+			// filter all events containing querystring
+			? events.filter(ev => this.objectContainsString(ev, query))
+			// when no searchstring provided, return list of all events
+			: this.allEvents
+	}
+
+	/**
+	 * - the callback function for the array some() method
+	 * @param ob - object to search
+	 * @param query - querystring to search for in object
+	 * @returns boolean - whether the object contains the querystring
+	 */
+	objectContainsString(ob: IEvent, query: string) {
+		return Object.keys(ob).some(key => ob[key].indexOf(query) > -1)
+	}
+
+	/**
+	 * - make a clone of the eventsList so mutating it does not affect the original
+	 * @param arr - the array to clone
+	 * @returns {Array} - a clone of the array
+	 */
+	clone(arr) {
+		return arr.concat()
 	}
 }
