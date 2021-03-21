@@ -16,7 +16,6 @@ export class EventsDetailComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.eventDate = new Date(this.event.eventDate).toLocaleDateString(navigator.language, this.dateFormatOptions)
-		console.log('event = ', this.event);
 	}
 
 }

@@ -9,15 +9,22 @@ import { IEvent } from "../../models/event";
 	styleUrls: ['./events-overview.component.scss']
 })
 export class EventsOverviewComponent implements OnInit {
+	// the list of all events - not mutated
 	allEvents: IEvent[];
-	// since the eventslist is mutated when searching (by filtering the events not containing the searchstring) we need to have a working copy and the original list so they can be displayed again.
+	// since the eventslist is mutated when searching (by filtering out the events not containing the searchstring) we need to have a working copy.
 	events: IEvent[];
 	columnNames: string[];
+	// initial column to sort on 
 	sortColumn = "eventDate";
+	// initial direction to sort 
 	sortDirection = "down";
+	// columnsnames in this list get sort icons in the header
 	sortableColumns = ["name", "eventDate"];
 	displayDateFormat: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+	// display the modal for event details
 	selectedEvent: IEvent;
+	// display the modal for subscribing to event
+	eventId: string;
 
 	constructor(private subjectService: SubjectService) { }
 
@@ -122,6 +129,13 @@ export class EventsOverviewComponent implements OnInit {
 	}
 
 	hideModal() {
+		// modal event details
 		this.selectedEvent = null;
+		// modal subscribe to event
+		this.eventId = null;
+	}
+
+	subscribe(e, eventId) {
+		e.stopPropagation();
 	}
 }
