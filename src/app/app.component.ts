@@ -15,4 +15,8 @@ export class AppComponent {
 	search(q) {
 		this.subjectService.search(q);
 	}
+
+	showAllEvents(e) {
+		this.search("");
+	}
 }

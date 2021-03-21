@@ -29,9 +29,11 @@
 				<a class="nav-link disabled" href="#">Disabled</a>
 			</li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0" (submit)="search(query.value)">
-			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" #query>
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		<form class="form-inline my-2 my-lg-0">
+			<button class="btn btn-outline-secondary mr-3" (click)="showAllEvents($event)">Show all events</button>
+			<input class="form-control mr-sm-2" type="search" placeholder="Search event by name" aria-label="Search"
+				#query>
+			<button class="btn btn-outline-success my-2 my-sm-0" (click)="search(query.value)">Search</button>
 		</form>
 	</div>
 </nav>
