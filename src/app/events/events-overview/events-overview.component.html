@@ -9,16 +9,24 @@
 					[attr.data-column]="columnName" (click)="sort($event)"></i>
 			</span>
 		</th>
+		<th>Subscribe</th>
 		<tbody>
 			<tr *ngFor="let event of events" (click)="selectedEvent=event">
 				<td>{{formatDate(event.eventDate)}}</td>
 				<td>{{event[columnNames[1]]}}</td>
 				<td>{{event[columnNames[2]]}}</td>
+				<td class="d-flex justify-content-center">
+					<i class="bi bi-pencil bg-light p-3" (click)="eventId=event.id"></i>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
 	<modal (hide)="hideModal()" *ngIf="selectedEvent">
 		<events-detail [event]="selectedEvent"></events-detail>
+	</modal>
+
+	<modal (hide)="hideModal()" *ngIf="eventId">
+		<user-form [eventId]="eventId"></user-form>
 	</modal>
 </div>

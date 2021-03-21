@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { EventsOverviewComponent } from './events/events-overview/events-overview.component';
 import { SubjectService } from './services/subject.service';
 import { EventsDetailComponent } from './events/events-detail/events-detail.component';
-import { ModalComponent } from './modal/modal.component'
+import { UserFormComponent } from './user-form/user-form.component'
 
 @NgModule({
 	declarations: [
@@ -14,6 +14,7 @@ import { ModalComponent } from './modal/modal.component'
 		EventsOverviewComponent,
 		EventsDetailComponent,
 		ModalComponent,
+		UserFormComponent,
 	],
 	imports: [
 		BrowserModule,
