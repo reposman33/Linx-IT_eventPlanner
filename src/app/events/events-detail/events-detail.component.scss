@@ -1,0 +1,13 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	border-radius: 1rem;
+	justify-content: space-around;
+
+	.description {
+		background-color: slategray;
+		color: white;
+		padding: 2rem;
+		border-radius: .5rem;
+	}
+}
