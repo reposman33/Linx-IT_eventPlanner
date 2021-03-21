@@ -1,0 +1,9 @@
+<div class="modal">
+	<div class="top-right">
+		<button type="button" class="close" aria-label="Close" (click)="hideModal()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<ng-content></ng-content>
+</div>
+<div class="modalBackground" (click)="hideModal()"></div>
