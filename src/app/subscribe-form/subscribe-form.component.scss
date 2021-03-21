@@ -1,0 +1,32 @@
+form {
+	width: 100%;
+	padding: 1rem;
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	label {
+		font-weight: bold;
+		margin-right: 1rem;
+	}
+
+	input {
+		width: 100%;
+	}
+
+	.alert {
+		margin-left: .5rem;
+		padding-left: .5rem;
+	}
+
+	.column-40 {
+		flex-basis: 40%;
+	}
+
+	.column-60 {
+		flex-basis: 60%;
+	}
+}
