@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms"
+import { ISubscribeForm } from "../models/subscribe-form";
 @Component({
 	selector: 'user-form',
 	templateUrl: './subscribe-form.component.html',
 	styleUrls: ['./subscribe-form.component.scss']
 })
-export class UserFormComponent implements OnInit {
+export class SubscribeFormComponent implements OnInit {
 	@Input()
 	eventId: string;
 	subscribeForm = new FormGroup({
@@ -17,11 +18,10 @@ export class UserFormComponent implements OnInit {
 	})
 	constructor() { }
 
-	ngOnInit(): void {
+	ngOnInit() {
 	}
 
 	submit() {
-
 	}
 
 	get f() {

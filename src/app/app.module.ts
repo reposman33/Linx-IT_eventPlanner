@@ -7,7 +7,7 @@ import { EventsOverviewComponent } from './events/events-overview/events-overvie
 import { SubjectService } from './services/subject.service';
 import { EventsDetailComponent } from './events/events-detail/events-detail.component';
 import { ModalComponent } from './modal/modal.component';
-import { UserFormComponent } from './subscribe-form/subscribe-form.component'
+import { SubscribeFormComponent } from './subscribe-form/subscribe-form.component'
 
 @NgModule({
 	declarations: [
@@ -15,7 +15,7 @@ import { UserFormComponent } from './subscribe-form/subscribe-form.component'
 		EventsOverviewComponent,
 		EventsDetailComponent,
 		ModalComponent,
-		UserFormComponent,
+		SubscribeFormComponent,
 	],
 	imports: [
 		BrowserModule,
