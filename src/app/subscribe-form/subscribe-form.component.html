@@ -1,7 +1,7 @@
-<form [formGroup]="subscribeForm" (ngSubmit)="submit()" class="h-100 d-flex flex-column">
+<form [formGroup]="subscribeForm" class="h-100 d-flex flex-column">
 	<div class="form-group">
 		<label for="name">Name</label>
-		<input formControlName="name" type="text" id="name" class="form-control" required>
+		<input formControlName="name" type="text" id="name" class="form-control" #nameField required>
 		<div>
 			<small *ngIf="f.name.errors.required && f.name.touched && f.name.invalid"
 				class="alert alert-danger py-0">Please provide your name</small>
@@ -40,19 +40,20 @@
 	<div class="d-flex flex-column justify-content-center mb-3">
 		<label for="city">Gender</label>
 		<div class="form-check">
-			<input class="form-check-input" type="radio" name="female" id="female" formControlName="gender" checked>
+			<input class="form-check-input" type="radio" name="female" id="female" formControlName="gender"
+				value="female" checked>
 			<label class="form-check-label" for="female">Female</label>
 		</div>
 		<div class="form-check">
-			<input class="form-check-input" type="radio" name="male" id="male" formControlName="gender">
+			<input class="form-check-input" type="radio" name="male" id="male" formControlName="gender" value="male">
 			<label class="form-check-label" for="male">Male</label>
 		</div>
 		<div class="form-check">
-			<input class="form-check-input" type="radio" name="other" id="other" formControlName="gender">
+			<input class="form-check-input" type="radio" name="other" id="other" formControlName="gender" value="other">
 			<label class="form-check-label" for="other">Other</label>
 		</div>
 	</div>
-	{{subscribeForm.pristine}}
-	<button [disabled]="subscribeForm.errors" type="button" class="btn btn-primary mt-auto w-100">Subscribe to
+
+	<button type="button" class="btn btn-primary mt-auto w-100" (click)="onSubscribe()">Subscribe to
 		event</button>
 </form>
