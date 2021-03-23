@@ -15,6 +15,6 @@ export class ModalComponent implements OnInit {
 	}
 
 	hideModal() {
-		this.hide.emit(true)
+		this.hide.emit()
 	}
 }
