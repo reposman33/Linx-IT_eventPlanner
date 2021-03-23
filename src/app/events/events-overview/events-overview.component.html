@@ -11,12 +11,16 @@
 		</th>
 		<th>Subscribe</th>
 		<tbody>
-			<tr *ngFor="let event of events" (click)="openEventDetailModal($event, event)">
+			<tr *ngFor="let event of events" (click)="openEventDetailModal($event, event)"
+				[class]="subscriptions[event.id] ? 'selected' : ''"
+				[title]="subscriptions[event.id] ? 'You subscribed to this event on ' + subscriptions[event.id].time.toLocaleDateString('nl-NL', displayDateFormat) : ''">
 				<td>{{formatDate(event.eventDate)}}</td>
 				<td>{{event[columnNames[1]]}}</td>
 				<td>{{event[columnNames[2]]}}</td>
 				<td class="d-flex justify-content-center">
-					<i class="bi bi-pencil bg-light p-3" (click)="openSubscribeEventModal($event, event.id)"></i>
+					<!-- disable (click) event when user subscribed to event -->
+					<i [class]="(subscriptions[event.id] ? 'selected ' : '') + 'bi bi-pencil bg-light p-3'"
+						(click)="!!!subscriptions[event.id] && openSubscribeEventModal($event, event.id)"></i>
 				</td>
 			</tr>
 		</tbody>
@@ -28,5 +32,6 @@
 
 	<modal (hide)="hideModal()" *ngIf="eventId">
 		<subscribe-form (hide)="hideModal()" (subscribe)="subscribeToEvent($event)" [eventId]="eventId">
+		</subscribe-form>
 	</modal>
 </div>

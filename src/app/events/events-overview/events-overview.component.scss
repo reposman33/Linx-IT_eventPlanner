@@ -42,7 +42,6 @@ table {
 					color: $selected-text-color;
 				}
 			}
-			
 		}
 	}
 	tr:nth-child(even) {
@@ -54,5 +53,12 @@ table {
 	tr:hover {
 		background-color: lightyellow;
 		cursor: pointer;
+	}
+	tr.selected td {
+		color: red;
+	}
+	tr td i.selected {
+		color: #CCC;
+		cursor: default;
 	}
 }
