@@ -135,7 +135,7 @@ export class EventsOverviewComponent implements OnInit {
 		this.eventId = null;
 	}
 
-	subscribe(e, eventId) {
-		e.stopPropagation();
+	 */
+	}
 	}
 }
