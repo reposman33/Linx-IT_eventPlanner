@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import *  as  allEventsJsonData from '../data/allEvents.json';
 import { SubjectService } from "../../services/subject.service";
 import { IEvent } from "../../models/event";
+import { ISubscription } from 'src/app/models/subscription';
 
 @Component({
 	selector: 'app-events-overview',
@@ -14,17 +15,19 @@ export class EventsOverviewComponent implements OnInit {
 	// since the eventslist is mutated when searching (by filtering out the events not containing the searchstring) we need to have a working copy.
 	events: IEvent[];
 	columnNames: string[];
-	// initial column to sort on 
+	// initial sortcolumn 
 	sortColumn = "eventDate";
-	// initial direction to sort 
+	// initial sortdirection 
 	sortDirection = "down";
-	// columnsnames in this list get sort icons in the header
+	// the columns with these names are sortable
 	sortableColumns = ["name", "eventDate"];
 	displayDateFormat: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-	// display the modal for event details
+	// if defined, this triggers the display of a modal with event details
 	selectedEvent: IEvent;
-	// display the modal for subscribing to event
+	// if defined, this triggers the display of a modal with subscription form
 	eventId: string;
+	// an object containing all subscriptions
+	subscriptions = {};
 
 	constructor(private subjectService: SubjectService) { }
 
@@ -135,7 +138,31 @@ export class EventsOverviewComponent implements OnInit {
 		this.eventId = null;
 	}
 
+	/**
+	 * oen a modal containng event detail infpo
+	 * @param $event - the event object. 
+	 * @param event - the event to display
 	 */
+	openEventDetailModal($event, event) {
+		$event.stopPropagation()
+		this.selectedEvent = event;
 	}
+
+	/**
+	 * 
+	 * @param $event - the event object.
+	 * @param eventId - the id of the event to subscribe to 
+	 */
+	openSubscribeEventModal($event, eventId) {
+		$event.stopPropagation()
+		this.eventId = eventId;
+	}
+
+	/**
+	 * 
+	 * @param subscription  - subscription info to store - locally for now
+	 */
+	subscribeToEvent(subscription: ISubscription) {
+		this.subscriptions[subscription.eventId] = subscription;
 	}
 }
